@@ -14,6 +14,10 @@ namespace mantis_tests
     {
         protected IWebDriver driver;
         protected string baseURL;
+        protected LoginHelper loginHelper;
+        protected NavigationHelper navigationHelper;
+        protected ProjectHelper projectHelper;
+
 
         public RegistrationHelper Registration { get; set; }
 
@@ -23,11 +27,14 @@ namespace mantis_tests
         {
             driver = new FirefoxDriver();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
-            baseURL = "http://localhost";
+            baseURL = "http://localhost/mantisbt-2.25.3";
             Registration = new RegistrationHelper(this);
             Ftp = new FtpHelper(this);
             James = new JamesHelper(this);
             Mail = new MailHelper(this);
+            loginHelper = new LoginHelper(this);
+            navigationHelper = new NavigationHelper(this, baseURL);
+            projectHelper = new ProjectHelper(this);
         }
 
         ~ApplicationManager()
@@ -38,7 +45,6 @@ namespace mantis_tests
             }
             catch (Exception)
             {
-                // Ignore errors if unable to close the browser
             }
         }
 
@@ -61,9 +67,33 @@ namespace mantis_tests
             }
         }
 
+        protected AccountData admin;
+
+
         public FtpHelper Ftp { get; set; }
         public JamesHelper James { get; set; }
         public MailHelper Mail { get; set; }
+        public LoginHelper Auth
+        {
+            get
+            {
+                return loginHelper;
+            }
+        }
+        public NavigationHelper Nav
+        {
+            get
+            {
+                return navigationHelper;
+            }
+        }
+        public ProjectHelper Project
+        {
+            get
+            {
+                return projectHelper;
+            }
+        }
 
     }
 }

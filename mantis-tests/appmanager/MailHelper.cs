@@ -15,7 +15,7 @@ namespace mantis_tests
         {
             for (int i = 0; i < 20; i++)
             {
-                Pop3Client pop3 = new Pop3Client("localhost", 110, account.Name, account.Password, false);
+                Pop3Client pop3 = new Pop3Client("localhost", 110, account.Username, account.Password, false);
                 pop3.Connect();
                 pop3.Authenticate();
                 if (pop3.GetMessageCount() > 0)
