@@ -37,7 +37,9 @@ namespace mantis_tests
         {
             if (IsLoggedIn())
             {
-                driver.FindElement(By.LinkText("Logout")).Click();
+                driver.FindElement(By.XPath("//div[2]/ul/li[3]")).Click();
+                driver.FindElement(By.ClassName("user-menu"))
+                .FindElement(By.XPath("//li[4]/a/i")).Click();
             }
         }
 

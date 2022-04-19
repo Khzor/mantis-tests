@@ -16,6 +16,7 @@ namespace mantis_tests
 
         public void Register(AccountData account)
         {
+            manager.loginHelper.Logout();
             OpenMainPage();
             OpenRegistrationForm();
             FillRegistrationForm(account);
